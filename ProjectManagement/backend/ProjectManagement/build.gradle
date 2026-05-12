@@ -60,6 +60,8 @@ file('hibernate.properties').withReader { reader ->
 def dbUser = hibernateProperties.getProperty('hibernate.connection.username')
 def dbPass = hibernateProperties.getProperty('hibernate.connection.password')
 def dbName = "schedulingmanagementsystem_product_projectmanagement"
+def dbUrl = hibernateProperties.getProperty('hibernate.connection.url')
+def dbPort = (dbUrl =~ /:(\d+)\//)[0][1]
 
 // === 1. CREATE DATABASE ===
 task createDB(type: Exec) {
@@ -72,9 +74,9 @@ task createDB(type: Exec) {
         def sql = "SELECT 'CREATE DATABASE ${dbName}' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${dbName}') \\gexec"
         def os = System.getProperty('os.name').toLowerCase()
         if (os.contains('windows')) {
-            commandLine 'cmd', '/c', "echo ${sql} | psql -U ${dbUser}"
+            commandLine 'cmd', '/c', "echo ${sql} | psql -U ${dbUser} -p ${dbPort}"
         } else {
-            commandLine 'bash', '-c', "echo \"${sql}\" | psql -U ${dbUser}"
+            commandLine 'bash', '-c', "echo \"${sql}\" | psql -U ${dbUser} -p ${dbPort}"
         }
     }
     doLast {
@@ -141,16 +143,16 @@ task loadSql(type: Exec) {
 
     doFirst {
         println 'Loading SQL scripts into the database...'
-        if (!sqlDir.exists()) throw new GradleException("SQL directory '${sqlDir}' does not exist.")
-        if (sqlFiles.isEmpty()) throw new GradleException("No SQL files found in ${sqlDir}.")
+        
+        if (!sqlDir.exists() || sqlFiles.isEmpty()) { println 'No SQL files found, skipping.'; commandLine 'cmd', '/c', 'echo skipped'; return }
 
         def os = System.getProperty('os.name').toLowerCase()
         if (os.contains('windows')) {
     
-            def command = sqlFiles.collect { f -> "psql -a -f \"${f.absolutePath}\" \"postgresql://${dbUser}:${dbPass}@localhost/${dbName}\"" }.join(" & ")
+            def command = sqlFiles.collect { f -> "psql -a -f \"${f.absolutePath}\" \"postgresql://${dbUser}:${dbPass}@localhost:${dbPort}/${dbName}\"" }.join(" & ")
             commandLine 'cmd', '/c', command
         } else {
-            def command = sqlFiles.collect { f -> "psql -a -f \"${f.absolutePath}\" \"postgresql://${dbUser}:${dbPass}@localhost/${dbName}\"" }.join(" ; ")
+            def command = sqlFiles.collect { f -> "psql -a -f \"${f.absolutePath}\" \"postgresql://${dbUser}:${dbPass}@localhost:${dbPort}/${dbName}\"" }.join(" ; ")
             commandLine 'bash', '-c', command
         }
     }
