@@ -10,7 +10,7 @@ const Brand = ({ onCLick, isMobileFirst, logoSrc }) => {
       onClick={onCLick}
       className={className}
     >
-      {logoSrc ? <img src={logoSrc} className='h-[1.1lh]' /> : 'Coba5'}
+      {logoSrc ? <img src={logoSrc} className='h-[1.1lh]' /> : 'Announcement System'}
     </Link>
   )
 }
