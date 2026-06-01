@@ -53,6 +53,22 @@ services:
       - backend
     restart: unless-stopped
 
+  reset:
+    build:
+      context: ./reset-service
+      dockerfile: Dockerfile
+    container_name: announcementextra-reset
+    environment:
+      DB_URL: postgresql://postgres:postgres123@postgres/schedulingmanagementsystem_product_fullproduct
+    ports:
+      - "3061:8080"
+    networks:
+      - ae-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
 networks:
   ae-network:
     driver: bridge

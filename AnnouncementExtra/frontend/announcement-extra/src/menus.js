@@ -80,14 +80,6 @@ addMenu({
 });
 
 addMenu({
-  id: "beritaBoard",
-  route: "/berita",
-  label: "Berita",
-  permission: "",
-  subMenus: [],
-});
-
-addMenu({
   id: "subscribeBerita",
   route: "/subscribe",
   label: "Subscribe Berita",
