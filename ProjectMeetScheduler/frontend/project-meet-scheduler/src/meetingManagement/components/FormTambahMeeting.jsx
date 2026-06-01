@@ -116,6 +116,8 @@ const FormTambahMeeting = () => {
                 label="Project"
                 placeholder="Pilih project"
                 options={projectOptions}
+                optionKey="value"
+                optionLabel="label"
                 fieldState={fieldState}
                 {...field}
                 isRequired={true}
