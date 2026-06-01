@@ -8,7 +8,7 @@ services:
     image: postgres:15-alpine
     container_name: projectmeetscheduler-postgres
     environment:
-      POSTGRES_DB: projectmeetscheduler
+      POSTGRES_DB: schedulingmanagementsystem_product_projectmeetscheduler
       POSTGRES_USER: ${AMANAH_DB_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${AMANAH_DB_PASSWORD:-postgres123}
     ports:
@@ -30,7 +30,7 @@ services:
     container_name: projectmeetscheduler-backend
     environment:
       # Internal ports are fixed (7776, 9464) - configured in Dockerfile
-      AMANAH_DB_URL: ${AMANAH_DB_URL:-jdbc:postgresql://postgres:5432/projectmeetscheduler}
+      AMANAH_DB_URL: ${AMANAH_DB_URL:-jdbc:postgresql://postgres:5432/schedulingmanagementsystem_product_projectmeetscheduler}
       AMANAH_DB_USERNAME: ${AMANAH_DB_USERNAME:-postgres}
       AMANAH_DB_PASSWORD: ${AMANAH_DB_PASSWORD:-postgres123}
     ports:

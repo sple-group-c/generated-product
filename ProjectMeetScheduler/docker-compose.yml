@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: projectmeetscheduler-postgres
+    environment:
+      POSTGRES_DB: schedulingmanagementsystem_product_projectmeetscheduler
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "3030:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pms-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: projectmeetscheduler-backend
+    environment:
+      AMANAH_DB_URL: jdbc:postgresql://postgres:5432/schedulingmanagementsystem_product_projectmeetscheduler
+      AMANAH_DB_USERNAME: postgres
+      AMANAH_DB_PASSWORD: postgres123
+      AMANAH_HOST_BE: 0.0.0.0
+      AMANAH_PORT_BE: 7776
+    ports:
+      - "3040:7776"
+    networks:
+      - pms-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend/project-meet-scheduler
+      dockerfile: Dockerfile
+    container_name: projectmeetscheduler-frontend
+    ports:
+      - "3002:80"
+    networks:
+      - pms-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  pms-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
