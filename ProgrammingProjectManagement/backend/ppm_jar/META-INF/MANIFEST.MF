@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: 17.0.9 (Eclipse Adoptium)
+Main-Class: schedulingmanagementsystem.product.programmingprojectmanagem
+ ent.ProgrammingProjectManagement
+
