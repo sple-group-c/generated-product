@@ -38,5 +38,6 @@ USER winvmj
 # Expose internal ports
 EXPOSE 7776
 
-# Run the application
+# Run the application (env vars AMANAH_DB_URL, AMANAH_DB_USERNAME, AMANAH_DB_PASSWORD
+# are read by WinVMJ at startup to override hibernate.properties)
 CMD ["java", "-cp", "jars/*:.", "schedulingmanagementsystem.product.programmingprojectmanagement.ProgrammingProjectManagement"]
