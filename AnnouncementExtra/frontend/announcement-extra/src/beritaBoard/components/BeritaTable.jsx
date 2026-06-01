@@ -13,8 +13,7 @@ const BeritaTable = ({ listBerita,
   const { checkPermission } = useAuth();
   const navigate = useNavigate();
   const detail = async (beritaItem) => {
-    isMobile() && navigate(`/berita/:id_berita`
-    );
+    isMobile() && navigate(`/berita/${beritaItem.beritaid}`);
   };
   
   return (
@@ -39,7 +38,7 @@ const BeritaTable = ({ listBerita,
           }
   ]}
         itemsEvents={(beritaItem) => [
-          <Link to={`/berita/:id_berita`}>
+          <Link to={`/berita/${beritaItem.beritaid}`}>
             <Button
               id="_lhDwcEw7EfG1qvAbnuoO6w"
               size="sm"

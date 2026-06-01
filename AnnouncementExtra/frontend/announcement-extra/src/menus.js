@@ -63,13 +63,6 @@ addMenu({
 });
 
 
-addMenu({
-  id: "meetingManagement",
-  route: "/meeting-management",
-  label: "Meeting Management",
-  permission: "",
-  subMenus: [],
-});
 
 addMenu({
   id: "coba",

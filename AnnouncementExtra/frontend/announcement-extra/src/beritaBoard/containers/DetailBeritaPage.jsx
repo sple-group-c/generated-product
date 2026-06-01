@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext} from 'react'
 import { Button, Spinner } from "@/commons/components"
 import * as Layouts from '@/commons/layouts';
 import { Link } from "react-router";
+import { useParams as useRouterParams } from "react-router";
 import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 
@@ -10,6 +11,7 @@ import DetailBerita from '../components/DetailBerita'
 import getDetailBerita from '../services/getDetailBerita'
 
 const DetailBeritaPage = props => {
+  const { id_berita } = useRouterParams();
   const [isLoading, setIsLoading] = useState({
 	detailBerita: false,
 
@@ -26,14 +28,14 @@ useEffect(() => {
 		const fetchData = async () => {
 			try {
 				setIsLoading(prev => ({...prev, detailBerita: true}))
-				const { data: detailBerita } = await getDetailBerita({  })
+				const { data: detailBerita } = await getDetailBerita({ beritaid: id_berita })
 				setDetailBerita(detailBerita.data)
 			} finally {
 				setIsLoading(prev => ({...prev, detailBerita: false}))
 			}
 		}
 		fetchData()
-	}, [])
+	}, [id_berita])
 
   return (
 	<Layouts.ViewContainerLayout
