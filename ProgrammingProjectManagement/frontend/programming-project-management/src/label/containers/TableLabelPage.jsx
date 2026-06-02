@@ -45,10 +45,9 @@ useEffect(() => {
 		buttons={
 			<>
 			<Layouts.ViewContainerButtonLayout>
-			  	<Link to={`invalid
-			  	`}>
+			   	<Link to={`/label/tambah`}>
 			  		<Button id="_Olce4EiOEfGg0fy8ktMBQg" className="p-2" variant="primary">
-			  		  ViewElement Event
+			  		  Tambah Label
 			  		</Button>
 			  	</Link>
 			
@@ -62,7 +61,7 @@ useEffect(() => {
 	items={[listLabel]}
 	isLoading={isLoading.tableLabel}
 >
-	<invalidTable
+	<Table
 		listLabel={listLabel}
 		
 	/>

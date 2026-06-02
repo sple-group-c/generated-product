@@ -5,8 +5,8 @@ import { useParams } from "@/commons/hooks/useParams"
 import { useAuth } from '@/commons/auth';
 import { Button, Modal, Spinner } from '@/commons/components';
 import * as Layouts from "@/commons/layouts";
-const invalidTable = ({ listLabel,
-	}) => {
+const InvalidTable = ({ 
+    listLabel}) => {
   const { checkPermission } = useAuth();
   
   return (
@@ -34,4 +34,4 @@ const invalidTable = ({ listLabel,
   )
 };
 
-export default invalidTable;
+export default InvalidTable;

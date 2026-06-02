@@ -10,7 +10,7 @@ const labelRoutes = [
   }	
 ,
 { 
-    path: "",
+    path: "/label/tambah",
     element: <FormLabel />,
   }	
 
