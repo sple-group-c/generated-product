@@ -7,7 +7,7 @@ import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useNavigate } from "react-router";
 import { useAuth } from '@/commons/auth';
-import Table from "../components/invalidTable";
+import Table from "../components/LabelTable";
 import getListLabel from '../services/getListLabel'
 
 const TableLabelPage = props => {

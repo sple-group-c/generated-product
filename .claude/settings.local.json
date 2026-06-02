@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Rename-Item \"C:\\\\Users\\\\Nadia\\\\Documents\\\\generated-product\\\\ProgrammingProjectManagement\\\\frontend\\\\programming-project-management\\\\src\\\\label\\\\components\\\\invalidTable.jsx\" \"LabelTable.jsx\")"
+    ]
+  }
+}
