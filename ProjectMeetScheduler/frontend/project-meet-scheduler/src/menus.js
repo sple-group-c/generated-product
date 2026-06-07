@@ -77,3 +77,11 @@ addMenu({
   permission: '',
   subMenus: [],
 })
+
+addMenu({
+    id: '_iBJKYF4KEfGlAbCz2XZjWQ',
+    route: '/labeldelta',
+    label: 'LabelDelta',
+    permission: '',
+    subMenus: [],
+})

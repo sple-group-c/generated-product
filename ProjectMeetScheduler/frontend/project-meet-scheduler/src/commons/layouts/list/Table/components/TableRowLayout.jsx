@@ -147,7 +147,17 @@ const TableRowLayout = ({
               isFile={itemsAttr.condition.includes("isFile")}
               isHiddenMobile={itemsAttr.condition.includes("isHiddenMobile")}
             >
-              {item[itemsAttr.featureName] != null ? String(item[itemsAttr.featureName]) : ""}
+              {itemsAttr.condition.includes("isColor") ? (
+                <div className="flex items-center gap-2">
+                  <span
+                    className="inline-block w-4 h-4 rounded-sm border border-gray-300"
+                    style={{ backgroundColor: item[itemsAttr.featureName] || 'transparent' }}
+                  />
+                  <span>{item[itemsAttr.featureName]}</span>
+                </div>
+              ) : (
+                item[itemsAttr.featureName]
+              )}
             </TableCell>
           )
       )}

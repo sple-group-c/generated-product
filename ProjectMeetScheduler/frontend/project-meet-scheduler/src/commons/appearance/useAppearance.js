@@ -3,7 +3,7 @@ import useAppearanceStore from "./store";
 
 const useAppearance = () => {
   const { interfaceKit: kitName } = useAppearanceStore();
-  return INTERFACE_KITS[kitName] ?? INTERFACE_KITS["donor"];
+  return INTERFACE_KITS[kitName];
 };
 
 export default useAppearance;

@@ -6,6 +6,7 @@ import staticPageRoutes from "@/staticPage/routes";
 import homeRoutes from "@/home/routes";
 import projectRoutes from "@/project/routes";
 import labelRoutes from "@/label/routes";
+import labelDeltaRoutes from "@/labelDelta/routes";
 import meetingManagementRoutes from "@/meetingManagement/routes";
 import taskManagementRoutes from "@/taskManagement/routes";
 
@@ -18,6 +19,7 @@ const GlobalRoutes = () => {
     ...homeRoutes,
     ...projectRoutes,
     ...labelRoutes,
+    ...labelDeltaRoutes,
     ...meetingManagementRoutes,
     ...taskManagementRoutes,
   ])

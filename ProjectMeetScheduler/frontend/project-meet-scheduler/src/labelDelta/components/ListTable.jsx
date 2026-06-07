@@ -5,14 +5,14 @@ import { useParams } from "@/commons/hooks/useParams"
 import { useAuth } from '@/commons/auth';
 import { Button, Modal, Spinner } from '@/commons/components';
 import * as Layouts from "@/commons/layouts";
-const InvalidTable = ({ 
-    listLabel}) => {
+const ListTable = ({ 
+    modifiedDataBinding}) => {
   const { checkPermission } = useAuth();
   
   return (
   <>
     <Layouts.ListComponentTableLayout
-  	  items={[listLabel]}
+  	  items={[modifiedDataBinding]}
   	  itemsAttrs={[
           {
             id: "name",
@@ -28,10 +28,17 @@ const InvalidTable = ({
             featureName: "description",
             editable: false
           }
+  ,        {
+            id: "color",
+            condition: "isColor",
+            label: "color",
+            featureName: "color",
+            editable: false
+          }
   ]}
   	/>
   </>
   )
 };
 
-export default InvalidTable;
+export default ListTable;

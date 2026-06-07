@@ -155,6 +155,7 @@ const ListComponentLayout = ({
                 ?.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize)
                 .map((item) => (
                   <TableRowLayout
+                    key={item[itemId] ?? item.name ?? JSON.stringify(item)}
                     item={item}
                     itemId={itemId}
                     detail={detail}
