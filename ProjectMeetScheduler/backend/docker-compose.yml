@@ -1,4 +1,4 @@
-# WinVMJ Generated Docker Compose
+# WinVMJ Generated Docker Compose (Local Dev)
 # Product: ProjectMeetScheduler
 
 version: '3.8'
@@ -8,7 +8,7 @@ services:
     image: postgres:15-alpine
     container_name: projectmeetscheduler-postgres
     environment:
-      POSTGRES_DB: schedulingmanagementsystem_product_projectmeetscheduler
+      POSTGRES_DB: projectmeetscheduler
       POSTGRES_USER: ${AMANAH_DB_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${AMANAH_DB_PASSWORD:-postgres123}
     ports:
@@ -29,13 +29,13 @@ services:
       dockerfile: Dockerfile
     container_name: projectmeetscheduler-backend
     environment:
-      # Internal ports are fixed (7776, 9464) - configured in Dockerfile
-      AMANAH_DB_URL: ${AMANAH_DB_URL:-jdbc:postgresql://postgres:5432/schedulingmanagementsystem_product_projectmeetscheduler}
+      AMANAH_HOST_BE: ${AMANAH_HOST_BE:-0.0.0.0}
+      AMANAH_PORT_BE: ${AMANAH_PORT_BE:-7776}
+      AMANAH_DB_URL: ${AMANAH_DB_URL:-jdbc:postgresql://postgres:5432/projectmeetscheduler}
       AMANAH_DB_USERNAME: ${AMANAH_DB_USERNAME:-postgres}
       AMANAH_DB_PASSWORD: ${AMANAH_DB_PASSWORD:-postgres123}
     ports:
-      # HOST_PORT:CONTAINER_PORT (container port fixed at 7776)
-      - "${HOST_PORT_BE:-7776}:7776"
+      - "${HOST_PORT_BE:-7776}:${AMANAH_PORT_BE:-7776}"
     networks:
       - projectmeetscheduler-network
     depends_on:

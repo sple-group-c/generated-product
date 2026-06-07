@@ -10,9 +10,9 @@ trap cleanup SIGINT
 
 read -p "Enter the path to the frontend directory: " frontend_dir
 
-echo "SELECT 'CREATE DATABASE schedulingmanagementsystem_product_projectmeetscheduler' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'schedulingmanagementsystem_product_projectmeetscheduler') \gexec" | psql "postgresql://postgres:postgres@localhost:5433/postgres"
+echo "SELECT 'CREATE DATABASE schedulingmanagementsystem_product_projectmeetscheduler' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'schedulingmanagementsystem_product_projectmeetscheduler') \gexec" | psql "postgresql://postgres:1234@localhost"
 for file in sql/*.sql; do
-    psql -a -f "$file" "postgresql://postgres:postgres@localhost:5433/schedulingmanagementsystem_product_projectmeetscheduler"
+    psql -a -f "$file" "postgresql://postgres:1234@localhost/schedulingmanagementsystem_product_projectmeetscheduler"
 done
 
 java -cp schedulingmanagementsystem.product.projectmeetscheduler --module-path schedulingmanagementsystem.product.projectmeetscheduler -m schedulingmanagementsystem.product.projectmeetscheduler &
